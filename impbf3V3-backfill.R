@@ -1,8 +1,8 @@
 # Metadata ---------------------------------------------------------------------
 
 # Code written by: Kelly Donovan and Nicholas Bussberg
-# Last Update: 2026-03-26
-# Filename: impbf3V2-backfill.R
+# Last Update: 2026-06-29
+# Filename: impbf3V3-backfill.R
 
 # Purpose of this script:
   # apply backfill approach to Desmophyllum corals in NOAA dataset
@@ -14,7 +14,7 @@ rm(list=ls())
 
 options(width = 80)
 
-filename <-"impbf3V2-backfill"
+filename <-"impbf3V3-backfill"
 
 sink(paste(filename, ".log", sep = "")) # create log file to store output
 
@@ -46,7 +46,7 @@ growth_table <- data.frame(backfill_years = c(13, 64),
     # number of years to backfill was determined from lit review of the species
 
 # create range of years in dataset
-year_range <- data.frame(ObservationYear = 1960:2022)
+year_range <- data.frame(ObservationYear = 1960:max(coral_data$ObservationYear))
 
 num_years <- length(year_range$ObservationYear)
 min_year <- min(year_range$ObservationYear)
@@ -81,7 +81,7 @@ data_full <- expanded_data |>
 # create wide format version of counts for review
 raw_wide_counts <- data_full |>
   pivot_wider(names_from = ObservationYear, values_from = count) |>
-  mutate(total = rowSums(across(`1960`:`2022`)))
+  mutate(total = rowSums(across(`1960`:`2017`)))
 
 
 ## 3 Backfill procedure --------------------------------------------------------
@@ -111,14 +111,14 @@ data_wide_counts_backfilled <- data_backfilled |>
   pivot_wider(names_from = ObservationYear,
               values_from = count,
               values_fill = 0) |>
-  mutate(total = rowSums(across(`1960`:`2022`)))
+  mutate(total = rowSums(across(`1960`:`2017`)))
 
 
 ## 4 Save data -----------------------------------------------------------------
 
-saveRDS(data_wide_counts_backfilled, "impbf3-backfill-counts-wide.RDS")
-saveRDS(data_backfilled, "impbf3-backfill-counts-long.RDS")
-saveRDS(raw_wide_counts, "impbf3-raw-counts-wide.RDS")
+saveRDS(data_wide_counts_backfilled, "impbf3V3-backfill-counts-wide.RDS")
+saveRDS(data_backfilled, "impbf3V3-backfill-counts-long.RDS")
+saveRDS(raw_wide_counts, "impbf3V3-raw-counts-wide.RDS")
 
 
 

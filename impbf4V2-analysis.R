@@ -1,8 +1,8 @@
 # Metadata ---------------------------------------------------------------------
 
 # Code written by: Kelly Donovan and Nicholas Bussberg
-# Last Update: 2026-03-25
-# Filename: impbf4-analysis.R
+# Last Update: 2026-06-29
+# Filename: impbf4V2-analysis.R
 
 # Purpose of this script:
   # analyze backfilled datasets
@@ -13,7 +13,7 @@ rm(list=ls())
 
 options(width = 80)
 
-filename <-"impbf4-analysis"
+filename <-"impbf4V2-analysis"
 
 sink(paste(filename, ".log", sep = "")) # create log file to store output
 
@@ -28,19 +28,18 @@ R.version.string
 # Load packages
 
 library(dplyr)
-# library(tidyr)
 
 # Read in data
 
 coral_data <- readRDS(file = "impbf1-NGOM-Desmo.RDS")
-backfill_wide_counts <- readRDS(file = "impbf3-backfill-counts-wide.RDS")
-raw_wide_counts <- readRDS(file = "impbf3-raw-counts-wide.RDS")
+backfill_wide_counts <- readRDS(file = "impbf3V3-backfill-counts-wide.RDS")
+raw_wide_counts <- readRDS(file = "impbf3V3-raw-counts-wide.RDS")
 
 
 ## 1 Pre-backfilled data -------------------------------------------------------
 
 # select year columns for counts (ChatGPT was used to generate ideas)
-pre_year_data <- raw_wide_counts[, as.character(1960:2022)]
+pre_year_data <- raw_wide_counts[, as.character(1960:2017)]
 
 # flatten into one vector
 pre_all_values <- unlist(pre_year_data)
@@ -65,7 +64,7 @@ pre_summary
 ## 2 Post-backfilled data -------------------------------------------------------
 
 # select year columns for counts (ChatGPT was used to generate ideas)
-post_year_data <- backfill_wide_counts[, as.character(1960:2022)]
+post_year_data <- backfill_wide_counts[, as.character(1960:2017)]
 
 # flatten into one vector
 post_all_values <- unlist(post_year_data)
@@ -101,9 +100,9 @@ count_backfilled / post_summary$post_total
 
 # select year columns for counts (ChatGPT was used to generate ideas)
 pre_year_Dp <- raw_wide_counts[raw_wide_counts$Species=="pertusum", 
-                                 as.character(1960:2022)]
+                                 as.character(1960:2017)]
 pre_year_Dd <- raw_wide_counts[raw_wide_counts$Species=="dianthus", 
-                               as.character(1960:2022)]
+                               as.character(1960:2017)]
 
 # flatten into one vector
 pre_all_Dp <- unlist(pre_year_Dp)
@@ -138,9 +137,9 @@ pre_summary_Dd
 
 # select year columns for counts (ChatGPT was used to generate ideas)
 post_year_Dp <- backfill_wide_counts[backfill_wide_counts$Species=="pertusum", 
-                                     as.character(1960:2022)]
+                                     as.character(1960:2017)]
 post_year_Dd <- backfill_wide_counts[backfill_wide_counts$Species=="dianthus", 
-                                     as.character(1960:2022)]
+                                     as.character(1960:2017)]
 
 # flatten into one vector
 post_all_Dp <- unlist(post_year_Dp)

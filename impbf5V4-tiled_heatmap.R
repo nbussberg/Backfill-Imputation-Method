@@ -1,8 +1,8 @@
 # Metadata ---------------------------------------------------------------------
 
 # Code written by: Kelly Donovan and Nicholas Bussberg
-# Last Update: 2026-04-27
-# Filename: impbf5V3-tiled_heatmap.R
+# Last Update: 2026-06-29
+# Filename: impbf5V4-tiled_heatmap.R
 
 # Purpose of this script:
   # create tiled heatmap to illustrate backfill method
@@ -19,7 +19,7 @@ rm(list=ls())
 
 options(width = 80)
 
-filename <-"impbf5V3-tiled_heatmap"
+filename <-"impbf5V4-tiled_heatmap"
 
 sink(paste(filename, ".log", sep = "")) # create log file to store output
 
@@ -43,7 +43,7 @@ library(ggtext)
 # Read in data
 
 coral_data <- readRDS(file = "impbf1-NGOM-Desmo.RDS")
-backfill_counts <- readRDS(file = "impbf3-backfill-counts-long.RDS")
+backfill_counts <- readRDS(file = "impbf3V3-backfill-counts-long.RDS")
 
 
 ## All code that follows that is uncommented is designed to generate the graph
