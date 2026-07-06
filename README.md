@@ -30,11 +30,11 @@ Here is the list of scripts (in run order) and what they do. Note that some Warn
 2.	impbf2-sim_scenarios.R - creates small, simulated examples to test the backfilling method to ensure it works as intended.
 - Running this code is optional if you do not want to see simulations.
 
-4.	impbf3V2-backfill.R - implements the backfilling method on the cleaned NOAA dataset from impbf1. 
+4.	impbf3V3-backfill.R - implements the backfilling method on the cleaned NOAA dataset from impbf1. 
 
-5.	impbf4-analysis.R - analyzes the backfilled NOAA dataset from impbf3.
+5.	impbf4V2-analysis.R - analyzes the backfilled NOAA dataset from impbf3.
 
-6.	impbf5V3-tiled_heatmap.R - creates the tiled heatmap used in the paper.
+6.	impbf5V4-tiled_heatmap.R - creates the tiled heatmap used in the paper.
 - There are two versions of the script embedded within it. The first (uncommented-out, first half) is designed to run on Windows. The second (commented-out, at bottom) is designed to run on Mac. Due to font choices, code could not be created that was compatible on both operating systems.
 
 ## References ## 
